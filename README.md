@@ -1,35 +1,53 @@
-# Welcome to Java Marathon
+# Welcome to Practical Java
 ## JOM Multithreading
 
-You can start by cloning the repository to your computer using the following command:
-```sh
-git clone <url>
-```
-You can copy the Url here
+## Task 3
+Suppose, we have the next class:
 
-<img width="968" alt="Screenshot 2022-05-10 at 23 06 42" src="https://user-images.githubusercontent.com/61456363/167713268-c89a4125-9467-47a6-a2d8-eb6fcefcc1dd.png">
+    class threadExample{
+        public static void threadRun() { 
+            Interactor interactor = new Interactor();     
+            Thread t1 = new Thread(()-> { 
+                try{ 
+                    interactor.serve(x -> -x+4, 11); 
+                } 
+                catch(InterruptedException e){ 
+                    e.printStackTrace(); 
+                }
+            });   
+        
+            Thread t2 = new Thread(() -> { 
+                try{ 
+                    interactor.consume((a, b) -> a + 2*b, 20); 
+                } 
+                catch(InterruptedException e){ 
+                    e.printStackTrace(); 
+                }
+            });   
+        
+                try{
+                t2.start();            
+                t1.start();  
+                t2.join();             
+                t1.join();             
+                }
+                catch(InterruptedException e){ 
+                    e.printStackTrace(); 
+            } 
+        }
+    }
 
- 
-This sprint contains a few tasks. Unit tests for the tasks are in the separate branches **task1**, **task2**, **task3**.... 
+You need to implement the methods of the **Interactor** class so that output will look like this:
+**_Serving thread running<br/>
+Serving thread initializes the key<br/>
+key = -7<br/>
+Consuming thread received the key. key = -7<br/>
+Consuming thread changed the key. key = 33<br/>
+Serving thread resumed_**
 
-You can switch between branches using a command
-```sh
- git checkout <branch name>
-```
- e.g.
-```sh
- git checkout task1
- ```
- > Don't forget to commit your code before switching to another branch
- 
- In the **main** folder first you need to complete your code with the solution of the taks
- 
-After this uncomment all tests in folder **test** and run the code
-```sh
-mvn test
-```
-or (if you haven't installed Maven on your PC)
-```sh
-./mvnw test
-```
-or just use command `Run` from your IDE
+The **serve(...)** method should initialize the **x** field with applied its first parameter to the second one and **print the messages** only about its own actions.
+
+The **сounsume(...)** method should wait until serve initializes **x** field and then change **x** by assigning it the result of applying the method's first parameter to the second and the third ones. 
+This method also **prints the messages** only about its own actions.<br/>
+Assume that the **consume(...)** method should be able to execute without the **serve(...)** method **after waiting for 3 seconds**.<br/>
+Use **synchronized** blocks (or methods), **wait()** and **notify()** methods for the implementation.
