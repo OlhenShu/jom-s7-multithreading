@@ -1,35 +1,14 @@
-# Welcome to Java Marathon
+# Welcome to Practical Java
 ## JOM Multithreading
 
-You can start by cloning the repository to your computer using the following command:
-```sh
-git clone <url>
-```
-You can copy the Url here
+## Task 1
 
-<img width="968" alt="Screenshot 2022-05-10 at 23 06 42" src="https://user-images.githubusercontent.com/61456363/167713268-c89a4125-9467-47a6-a2d8-eb6fcefcc1dd.png">
+Create **ParallelCalculator** class that will be able to execute an operation in **parallel thread**.
+Use the implementation of **Runnable** interface for this.
 
- 
-This sprint contains a few tasks. Unit tests for the tasks are in the separate branches **task1**, **task2**, **task3**.... 
+Constructor of **ParallelCalculator** should take **3 parameters**:
 
-You can switch between branches using a command
-```sh
- git checkout <branch name>
-```
- e.g.
-```sh
- git checkout task1
- ```
- > Don't forget to commit your code before switching to another branch
- 
- In the **main** folder first you need to complete your code with the solution of the taks
- 
-After this uncomment all tests in folder **test** and run the code
-```sh
-mvn test
-```
-or (if you haven't installed Maven on your PC)
-```sh
-./mvnw test
-```
-or just use command `Run` from your IDE
+1. The **BinaryOperator<Integer>** to define an operation that will be executed,
+2. The **operand1** of type int and **operand2** of type **int**.
+
+The **ParallelCalculator** class should have **_not_**  **private result** field of type **int** where the result of the operation will be written when it's executed.
