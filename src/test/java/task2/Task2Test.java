@@ -42,6 +42,6 @@ class Task2Test {
     @Test
     void isResultOp2Correct() {
         assertEquals(2210, Accountant.sum(115, 2095),
-                "Result of sum 2210 and 2095 is not correct");
+                "Result of sum 115 and 2095 is not correct");
     }
 }
