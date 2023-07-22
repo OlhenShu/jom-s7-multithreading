@@ -45,9 +45,10 @@ Consuming thread received the key. key = -7<br/>
 Consuming thread changed the key. key = 33<br/>
 Serving thread resumed_**
 
-The **serve(...)** method should initialize the **x** field with applied its first parameter to the second one and **print the messages** only about its own actions.
+The **serve(...)** method should initialize the **x** field by applying its first parameter to the second one and print the messages only about its own actions.
 
-The **сounsume(...)** method should wait until serve initializes **x** field and then change **x** by assigning it the result of applying the method's first parameter to the second and the third ones. 
-This method also **prints the messages** only about its own actions.<br/>
-Assume that the **consume(...)** method should be able to execute without the **serve(...)** method **after waiting for 3 seconds**.<br/>
-Use **synchronized** blocks (or methods), **wait()** and **notify()** methods for the implementation.
+The **counsume(...)** method should wait until **serve** initializes **x** field (and preferably no longer) and then change **x** by assigning to it the result of applying the method's first parameter to the current value of **x** and the second parameter. This method also prints the messages only about its own actions.
+
+Assure that the **consume(...)** method should be able to execute without the **serve(...)** method being ever called after waiting for 3 seconds.
+
+Use synchronized blocks (or methods), wait() and notify() methods for your implementation.
